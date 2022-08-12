@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.UserMapper">
+<!--校验ip-->
+    <select id ="Checkip" resultType="String">
+        SELECT USER_IP FROM `DB_USER` WHERE ACCOUNT = #{account}
+    </select>
+    <select id="getUserId" resultType="String">
+        SELECT ID FROM `DB_USER` WHERE ACCOUNT = #{account}
+    </select>
+
+    <insert id="insert_log">
+
+    </insert>
+</mapper>

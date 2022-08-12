@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.UserLogMapper">
+<!-- 记录用户登录信息 -->
+    <insert id = "insertLog">
+        INSERT INTO DB_USER_LOG(
+                    USER_ID,
+                    LOGIN_IP,
+                    SUCCESS,
+                    TOKEN,
+                    EXPIRE_TIME)
+             VALUES(#{user_id},#{login_ip},#{success},#{token},#{expire_time});
+    </insert>
+
+    <update id="UpdateStatus">
+
+
+    </update>
+
+
+</mapper>
