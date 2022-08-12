@@ -26,5 +26,5 @@ spring:
         allow-bean-definition-overriding: true
     redis:
         host: 1227.0.0.1
-        password: 12345611
+        password: 123456
         port: 6379
