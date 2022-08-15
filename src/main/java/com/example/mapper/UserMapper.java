@@ -10,6 +10,6 @@ public interface UserMapper extends BaseMapper<User> {
 
     String Checkip(@Param("account") String account);
 
-    String getUserId(@Param("account") String account);
+    Long getUserId(@Param("account") String account);
 }
 

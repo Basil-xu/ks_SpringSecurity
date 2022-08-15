@@ -70,10 +70,12 @@ public class LoginServiceImpl implements LoginService {
         boolean  bool = userMapper.Checkip(user.getAccount()).equals(user.getUser_ip());
         LoginUser loginUser = (LoginUser) authenticate.getPrincipal();
         // TODO 如果认证没通过，给出对应的提示
-
+        // TODO 将User对象传递给认证处理器
+        user.setId(loginUser.getUser().getId());
+        AuthenticationEntryPointImpl.getUserAccount(user);
         if(Objects.isNull(authenticate) || !bool){
             // TODO IP校验不正确
-            userLogMapper.insertLog(loginUser.getUser().getId().toString(),user.getUser_ip(),1,null,null);
+            userLogMapper.insertLog(loginUser.getUser().getId(),user.getUser_ip(),1,null);
             return new ResponseResult(300,"登录失败,IP校验失败...");
 
         }
@@ -85,7 +87,8 @@ public class LoginServiceImpl implements LoginService {
         redisCache.setCacheObject("token:"+loginUser.getUser().getId().toString(),loginUser);
         redisCache.expire("token:"+loginUser.getUser().getId().toString(),60*60);
         // TODO 将token/IP存储到mysql
-        userLogMapper.insertLog(loginUser.getUser().getId().toString(),user.getUser_ip(),0,jwt,c.getTime());
+        System.out.println(user.getId()+"******"+jwt.length());
+        userLogMapper.insertLog(user.getId(),user.getUser_ip(),0,jwt);
         return new ResponseResult(200,"登录成功",map);
     }
 

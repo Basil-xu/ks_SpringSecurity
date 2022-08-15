@@ -24,7 +24,7 @@ public class UserLog {
     /**
      *v用户id
      */
-    private int user_id;
+    private Long user_id;
     /**
      * 登陆ip
      */

@@ -16,7 +16,7 @@ import java.util.Date;
  */
 @Mapper
 public interface UserLogMapper {
-     int insertLog(@Param("user_id") String user_id, @Param("login_ip") String login_ip, @Param("success") int success, @Param("token") String token, @Param("expire_time") Date expire_time);
+     int insertLog(@Param("user_id") Long user_id, @Param("login_ip") String login_ip, @Param("success") int success, @Param("token") String token);
 
      int UpdateStatus(User user);
 }
