@@ -37,7 +37,7 @@ public class AuthenticationEntryPointImpl implements AuthenticationEntryPoint{
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) {
         ResponseResult result = new ResponseResult(HttpStatus.UNAUTHORIZED.value(),"用户名认证失败,账号或密码错误");
 
-        if(userLogMapper.insertLog(userId,request.getHeader("HTTP_CLIENT_IP"),1,null)<=0){
+        if(userLogMapper.insertLog(userId,request.getHeader("HTTP_CLIENT_IP"),1,null,null)<=0){
             throw new RuntimeException("存入Mysql失败");
         }
         // TODO 处理移除

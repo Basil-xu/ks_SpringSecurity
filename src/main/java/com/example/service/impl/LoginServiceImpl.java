@@ -55,11 +55,6 @@ public class LoginServiceImpl implements LoginService {
     public ResponseResult login(User user, HttpServletRequest request) throws Exception {
         //获取用户IP
         user.setUser_ip(getIpAddr(request));
-        // TODO 获取当前时间戳
-        Date date = new Date();
-        Calendar c = Calendar.getInstance();
-        c.setTime(date);
-        c.add(Calendar.HOUR_OF_DAY, 3);
         // TODO 将User对象传递给认证处理器
         AuthenticationEntryPointImpl.getUserAccount(user);
         //用户认证
@@ -75,7 +70,7 @@ public class LoginServiceImpl implements LoginService {
         AuthenticationEntryPointImpl.getUserAccount(user);
         if(Objects.isNull(authenticate) || !bool){
             // TODO IP校验不正确
-            userLogMapper.insertLog(loginUser.getUser().getId(),user.getUser_ip(),1,null);
+            userLogMapper.insertLog(loginUser.getUser().getId(),user.getUser_ip(),1,null,null);
             return new ResponseResult(300,"登录失败,IP校验失败...");
 
         }
@@ -87,8 +82,13 @@ public class LoginServiceImpl implements LoginService {
         redisCache.setCacheObject("token:"+loginUser.getUser().getId().toString(),loginUser);
         redisCache.expire("token:"+loginUser.getUser().getId().toString(),60*60);
         // TODO 将token/IP存储到mysql
-        System.out.println(user.getId()+"******"+jwt.length());
-        userLogMapper.insertLog(user.getId(),user.getUser_ip(),0,jwt);
+        System.out.println(user.getId()+"******"+jwt.length());// todo
+        // TODO 获取当前时间戳
+        Date date = new Date();
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        c.add(Calendar.HOUR_OF_DAY, 3);
+        userLogMapper.insertLog(user.getId(),user.getUser_ip(),0,jwt,c.getTime());
         return new ResponseResult(200,"登录成功",map);
     }
 

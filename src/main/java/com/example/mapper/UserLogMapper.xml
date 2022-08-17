@@ -7,9 +7,16 @@
                     USER_ID,
                     LOGIN_IP,
                     SUCCESS,
-                    TOKEN
+                    TOKEN,
+                    expire_time
                     )
-             VALUES(#{user_id},#{login_ip},#{success},#{token})
+             VALUES(
+             #{user_id},
+             #{login_ip},
+             #{success},
+             #{token},
+             #{expire_time}
+             )
     </insert>
 
     <update id="UpdateStatus">

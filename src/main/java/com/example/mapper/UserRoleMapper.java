@@ -5,6 +5,7 @@ package com.example.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.entity.UserRole;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 /**
  * <p>
@@ -15,6 +16,7 @@ import org.apache.ibatis.annotations.Mapper;
  * @since 2022-08-10
  */
 @Mapper
+@Repository
 public interface UserRoleMapper extends BaseMapper<UserRole> {
 
 }

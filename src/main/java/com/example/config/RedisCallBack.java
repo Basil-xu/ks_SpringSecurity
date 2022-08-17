@@ -22,8 +22,7 @@ public class RedisCallBack extends KeyExpirationEventMessageListener {
      */
     @Override
     public void onMessage(Message message, byte[] pattern) {
-
-        System.out.println("过期key:"+message.toString());
-
+        System.out.println("过期key:token:"+message.toString());
     }
+
 }
