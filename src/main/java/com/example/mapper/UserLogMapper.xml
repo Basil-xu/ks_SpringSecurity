@@ -3,7 +3,7 @@
 <mapper namespace="com.example.mapper.UserLogMapper">
 <!-- 记录用户登录信息 -->
     <insert id = "insertLog">
-        INSERT INTO DB_USER_LOG(
+        INSERT INTO db_user_log(
                     USER_ID,
                     LOGIN_IP,
                     SUCCESS,
